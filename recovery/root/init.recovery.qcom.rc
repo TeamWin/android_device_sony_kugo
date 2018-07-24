@@ -4,8 +4,8 @@ on early-init
     chmod 0755 /sys/kernel/debug
 
 on fs
-    wait /dev/block/platform/soc.0/${ro.boot.bootdevice}
-    symlink /dev/block/platform/soc.0/${ro.boot.bootdevice} /dev/block/bootdevice
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
 on post-fs
     # Start clearpad_post_probe when filesystem is available for fwflash
