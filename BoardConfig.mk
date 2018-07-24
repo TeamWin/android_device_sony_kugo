@@ -77,7 +77,6 @@ TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone4/temp"
 TW_MAX_BRIGHTNESS := 4095
 TW_DEFAULT_BRIGHTNESS := 1050
-TW_EXCLUDE_SUPERSU := true
 TW_EXTRA_LANGUAGES := true
 TW_IGNORE_ABS_MT_TRACKING_ID := true
 TW_INCLUDE_CRYPTO := true
