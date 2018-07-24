@@ -210,18 +210,18 @@
 /sys/devices/i2c-12/12-*  pollrate_ms 0664 system system
 /sys/devices/f9925000.i2c/i2c-0/0-*                 enable         0660    input    system
 /sys/devices/f9925000.i2c/i2c-0/0-*                 poll_delay     0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            enable         0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            poll_delay     0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            enable_wakeup  0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            max_latency    0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            flush          0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            calibrate      0660    input    system
-/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            enable         0660    input    system
-/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            poll_delay     0660    input    system
-/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            enable_wakeup  0660    input    system
-/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            max_latency    0660    input    system
-/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            flush          0660    input    system
-/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            calibrate      0660    input    system
+/sys/devices/soc/78b6000.i2c/i2c-0/0-*              enable         0660    input    system
+/sys/devices/soc/78b6000.i2c/i2c-0/0-*              poll_delay     0660    input    system
+/sys/devices/soc/78b6000.i2c/i2c-0/0-*              enable_wakeup  0660    input    system
+/sys/devices/soc/78b6000.i2c/i2c-0/0-*              max_latency    0660    input    system
+/sys/devices/soc/78b6000.i2c/i2c-0/0-*              flush          0660    input    system
+/sys/devices/soc/78b6000.i2c/i2c-0/0-*              calibrate      0660    input    system
+/sys/devices/soc/78b5000.i2c/i2c-1/1-*              enable         0660    input    system
+/sys/devices/soc/78b5000.i2c/i2c-1/1-*              poll_delay     0660    input    system
+/sys/devices/soc/78b5000.i2c/i2c-1/1-*              enable_wakeup  0660    input    system
+/sys/devices/soc/78b5000.i2c/i2c-1/1-*              max_latency    0660    input    system
+/sys/devices/soc/78b5000.i2c/i2c-1/1-*              flush          0660    input    system
+/sys/devices/soc/78b5000.i2c/i2c-1/1-*              calibrate      0660    input    system
 /sys/devices/virtual/optical_sensors/proximity      ps_adc         0660    input    system
 /sys/devices/virtual/optical_sensors/proximity      ps_poll_delay  0660    input    system
 /sys/devices/virtual/optical_sensors/lightsensor    ls_auto        0660    input    system
@@ -265,11 +265,11 @@
 #/dev/assd                 0660    nfc         nfc
 
 # NFC
-/sys/devices/soc.0/7af6000.i2c/i2c-6/6-0028  init_deinit 0200    nfc     nfc
-/sys/devices/soc.0/7af6000.i2c/i2c-6/6-0028  set_pwr     0200    nfc     nfc
-/sys/devices/soc.0/7af6000.i2c/i2c-6/6-0028  res_ready   0400    nfc     nfc
-/sys/devices/soc.0/7af6000.i2c/i2c-6/6-0028  recv_rsp    0600    nfc     nfc
-/sys/devices/soc.0/7af6000.i2c/i2c-6/6-0028  send_cmd    0200    nfc     nfc
+/sys/devices/soc/7af6000.i2c/i2c-6/6-0028  init_deinit 0200    nfc     nfc
+/sys/devices/soc/7af6000.i2c/i2c-6/6-0028  set_pwr     0200    nfc     nfc
+/sys/devices/soc/7af6000.i2c/i2c-6/6-0028  res_ready   0400    nfc     nfc
+/sys/devices/soc/7af6000.i2c/i2c-6/6-0028  recv_rsp    0600    nfc     nfc
+/sys/devices/soc/7af6000.i2c/i2c-6/6-0028  send_cmd    0200    nfc     nfc
 
 # UIO devices
 /dev/uio0                 0660   system     system
@@ -293,13 +293,13 @@
 /dev/hbtp_vm              0660   system     system
 
 # Fingerprint sensor device
-/sys/devices/soc.0/0.fpc1145 hw_reset         0220 system input
-/sys/devices/soc.0/0.fpc1145 pinctl_set       0220 system input
-/sys/devices/soc.0/0.fpc1145 regulator_enable 0220 system input
-/sys/devices/soc.0/0.fpc1145 spi_prepare      0220 system input
-/sys/devices/soc.0/0.fpc1145 irq              0660 system input
-/sys/devices/soc.0/0.fpc1145 wakeup_enable    0660 system input
-/sys/devices/soc.0/0.fpc1145 pm_wakeup        0660 system input
+/sys/devices/soc/0.fpc1145 hw_reset         0220 system input
+/sys/devices/soc/0.fpc1145 pinctl_set       0220 system input
+/sys/devices/soc/0.fpc1145 regulator_enable 0220 system input
+/sys/devices/soc/0.fpc1145 spi_prepare      0220 system input
+/sys/devices/soc/0.fpc1145 irq              0660 system input
+/sys/devices/soc/0.fpc1145 wakeup_enable    0660 system input
+/sys/devices/soc/0.fpc1145 pm_wakeup        0660 system input
 
 # Kmsg device
 /dev/kmsg                                               0620   root       system
@@ -311,7 +311,7 @@
 # TA
 /dev/block/bootdevice/by-name/TA 0770  tad     tad
 
-/dev/block/platform/soc.0/7824900.sdhci/by-name/config 0600  system      system
+/dev/block/platform/soc/7824900.sdhci/by-name/config 0600  system      system
 
 # Audio Sony Effect tuning parameter setting device
 /dev/sony_hweffect_params 0660  system      audio
