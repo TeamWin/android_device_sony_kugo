@@ -12,89 +12,28 @@ on post-fs
     write /sys/devices/virtual/input/clearpad/post_probe_start 1
     write /sys/kernel/debug/clearpad/hwtest "XP"
 
+    # Disable BCL
+    write /sys/class/power_supply/bcl/device/mode "disable"
+
+    # Disable msm_thermal core control
+    write /sys/module/msm_thermal/core_control/enabled 0
+
+    # Limit the battery charging current
+    write /sys/class/power_supply/battery/system_temp_level 11
+
+    # All but one core to avoid not to raise temperature
+    write /sys/devices/system/cpu/cpu1/online 0
+    write /sys/devices/system/cpu/cpu2/online 0
+    write /sys/devices/system/cpu/cpu3/online 0
+    write /sys/devices/system/cpu/cpu4/online 0
+    write /sys/devices/system/cpu/cpu5/online 0
+
+    write /sys/module/msm_poweroff/parameters/disable_ramdump 1
+
 on boot
     setprop sys.usb.config adb
 
     write /sys/devices/virtual/input/clearpad/wakeup_gesture 1
-
-on enable-low-power
-    # Disable thermal & BCL hotplug to update governor settings
-    write /sys/module/msm_thermal/core_control/enabled 0
-    write /sys/devices/soc/soc:qcom,bcl/mode "disable"
-    write /sys/devices/soc/soc:qcom,bcl/hotplug_mask 0
-    write /sys/devices/soc/soc:qcom,bcl/hotplug_soc_mask 0
-    write /sys/devices/soc/soc:qcom,bcl/mode "enable"
-
-    # Configure governor settings for perf cluster
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 19000
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 85
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 10000
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack 40000
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 1017600
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads 90
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 40000
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/sampling_down_factor 40000
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 20000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 960000
-
-    # Configure governor settings for power cluster
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay "19000 1382400:39000"
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 90
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 10000
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack 40000
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 806400
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "90 1747200:80"
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis 40000
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/sampling_down_factor 40000
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 806400
-
-    # Bring up all cores online
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu4/online 1
-    write /sys/devices/system/cpu/cpu5/online 1
-    write /sys/devices/system/cpu/cpu6/online 1
-    write /sys/devices/system/cpu/cpu7/online 1
-
-    # Re-enable thermal & BCL hotplug
-    write /sys/module/msm_thermal/core_control/enabled 1
-    write /sys/devices/soc/soc:qcom,bcl/mode "disable"
-    write /sys/devices/soc/soc:qcom,bcl/hotplug_mask 48
-    write /sys/devices/soc/soc:qcom,bcl/hotplug_soc_mask 48
-    write /sys/devices/soc/soc:qcom,bcl/mode "enable"
-
-    # Input boost config
-    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1305600"
-    write /sys/module/cpu_boost/parameters/input_boost_ms 40
-
-    # Enable Low power modes
-    write /sys/module/lpm_levels/parameters/sleep_disabled 0
-
-    # Set big.LITTLE scheduler parameters
-    write /proc/sys/kernel/sched_downmigrate 83
-    write /proc/sys/kernel/sched_upmigrate 93
-
-    # Enable sched guided freq control
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load 1
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif 1
-    write /proc/sys/kernel/sched_freq_inc_notify 50000
-    write /proc/sys/kernel/sched_freq_dec_notify 50000
-
-    # Enable core control
-    write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 2
-    write /sys/devices/system/cpu/cpu0/core_ctl/max_cpus 4
-    write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 68
-    write /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres 40
-    write /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms 100
-    write /sys/devices/system/cpu/cpu0/core_ctl/is_big_cluster 1
 
     # Disable L2 GDHS on 8976
     write /sys/module/lpm_levels/system/a53/a53-l2-gdhs/idle_enabled N
@@ -105,9 +44,6 @@ on property:ro.crypto.state=encrypted
 
 on property:ro.crypto.fs_crypto_blkdev=/dev/block/dm-0
     stop qseecomd
-
-on property:init.svc.recovery=running
-    trigger enable-low-power
 
 service qseecomd /sbin/qseecomd
     disabled
