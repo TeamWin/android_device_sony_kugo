@@ -26,3 +26,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 # USB properties
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.usb.pid_suffix=1E8
+
+# Time Zone data for recovery
+PRODUCT_COPY_FILES += \
+    system/timezone/output_data/iana/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
