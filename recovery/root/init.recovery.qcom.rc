@@ -7,6 +7,11 @@ on fs
     wait /dev/block/platform/soc.0/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc.0/${ro.boot.bootdevice} /dev/block/bootdevice
 
+    chmod 0660 /dev/qseecom
+    chown system drmrpc /dev/qseecom
+    chmod 0664 /dev/ion
+    chown system system /dev/ion
+
 on post-fs
     # Start clearpad_post_probe when filesystem is available for fwflash
     write /sys/devices/virtual/input/clearpad/post_probe_start 1
@@ -40,12 +45,12 @@ on boot
     write /sys/module/lpm_levels/system/a72/a72-l2-gdhs/idle_enabled N
 
 on property:ro.crypto.state=encrypted
-    start qseecomd
+    start sbinqseecomd
 
 on property:ro.crypto.fs_crypto_blkdev=/dev/block/dm-0
-    stop qseecomd
+    stop sbinqseecomd
 
-service qseecomd /sbin/qseecomd
+service sbinqseecomd /sbin/qseecomd
     disabled
     user root
     group root
