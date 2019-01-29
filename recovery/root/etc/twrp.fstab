@@ -3,11 +3,13 @@
 /cache          ext4    /dev/block/bootdevice/by-name/cache
 /recovery       emmc    /dev/block/bootdevice/by-name/FOTAKernel        flags=backup=1;display="FOTAKernel"
 /system         ext4    /dev/block/bootdevice/by-name/system
+/system_image   emmc    /dev/block/bootdevice/by-name/system            flags=backup=0
 /data           ext4    /dev/block/bootdevice/by-name/userdata          flags=encryptable=footer
 /firmware       vfat    /dev/block/bootdevice/by-name/modem             flags=display="Firmware";mounttodecrypt;fsflags=ro,context=u:object_r:firmware_file:s0
 /modem_fs1      emmc    /dev/block/bootdevice/by-name/modemst1          flags=backup=1;display="Modem EFS1";subpartitionof=/boot
 /modem_fs2      emmc    /dev/block/bootdevice/by-name/modemst2          flags=backup=1;display="Modem EFS2";subpartitionof=/boot
-/oem            ext4    /dev/block/bootdevice/by-name/oem               flags=backup=1;display="OEM (ODM)"
+/oem            ext4    /dev/block/bootdevice/by-name/oem               flags=backup=1;display="OEM"
+/oem_image      emmc    /dev/block/bootdevice/by-name/oem               flags=display="OEM (ODM)";flashimg=1
 /ta             emmc    /dev/block/bootdevice/by-name/TA                flags=backup=1;display="Trim-Area"
 
 # Removable storage
