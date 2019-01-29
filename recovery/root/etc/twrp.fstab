@@ -4,6 +4,8 @@
 /recovery       emmc    /dev/block/bootdevice/by-name/FOTAKernel        flags=backup=1;display="FOTAKernel"
 /system         ext4    /dev/block/bootdevice/by-name/system
 /system_image	emmc    /dev/block/bootdevice/by-name/system            flags=backup=0
+/vendor         ext4    /dev/block/bootdevice/by-name/oem               flags=backup=1;display="Vendor"
+/vendor_image   emmc    /dev/block/bootdevice/by-name/oem               flags=backup=0
 /data           ext4    /dev/block/bootdevice/by-name/userdata          flags=encryptable=footer
 /firmware       vfat    /dev/block/bootdevice/by-name/modem             flags=display="Firmware";mounttodecrypt;fsflags=ro,context=u:object_r:firmware_file:s0
 /modem_fs1      emmc    /dev/block/bootdevice/by-name/modemst1          flags=backup=1;display="Modem EFS1";subpartitionof=/boot
