@@ -32,8 +32,3 @@ service sbinqseecomd /sbin/qseecomd
     user root
     group root
     seclabel u:r:recovery:s0
-
-service thermanager /sbin/thermanager /etc/thermanager.xml
-    user root
-    group root system
-    seclabel u:r:recovery:s0
