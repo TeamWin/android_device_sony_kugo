@@ -15,6 +15,7 @@
 /oem_image       emmc    /dev/block/bootdevice/by-name/oem               flags=display="OEM (ODM)";flashimg=1
 /ta              emmc    /dev/block/bootdevice/by-name/TA                flags=backup=1;display="Trim-Area"
 /rca             ext4    /dev/block/bootdevice/by-name/apps_log          flags=backup=1;display="AppsLog"
+/misc            emmc    /dev/block/bootdevice/by-name/splash
 
 # Removable storage
 /sdcard1         auto    /dev/block/mmcblk1p1    /dev/block/mmcblk1      flags=display="Micro SDcard";storage;wipeingui;removable
